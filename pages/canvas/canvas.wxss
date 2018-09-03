@@ -82,6 +82,13 @@ page {
   -webkit-transform-origin: 50% 150px; 
   transform-origin: 50% 150px;
 }
+.award-img{
+   
+   width: 80rpx;
+   height: 80rpx;
+}
+
+
 
 /* 分隔线 */
 .canvas-line{

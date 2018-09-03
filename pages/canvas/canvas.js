@@ -1,6 +1,7 @@
 var app = getApp()
 Page({
   data: {
+    oAwardsConfig:{},//奖品配置
     awardsList: {},
     animationData: {},
     btnDisabled: ''
@@ -11,14 +12,15 @@ Page({
     })
   },
   getLottery: function () {
-    console.log("a----------------");
-    var that = this
-    var awardIndex = Math.random() * 6 >>> 0;
-
+    let _This = this
+    let awardIndex = Math.random() * 6 >>> 0;
+    let oAwardsConfig = _This.data.oAwardsConfig;
+    console.log("oAwardsConfig----------------", oAwardsConfig);
     // 获取奖品配置
-    var awardsConfig = app.awardsConfig,
+    let awardsConfig = oAwardsConfig,
         runNum = 8
     if (awardIndex < 2) awardsConfig.chance = false
+      console.log("awardsConfig----------------", awardsConfig);
 
     // 旋转抽奖
     app.runDegs = app.runDegs || 0
@@ -26,21 +28,18 @@ Page({
     app.runDegs = app.runDegs + (360 - app.runDegs % 360) + (360 * runNum - awardIndex * (360 / 6))
     console.log('deg----2222222-------', app.runDegs)
 
-    var animationRun = wx.createAnimation({
+    let animationRun = wx.createAnimation({
       duration: 4000,
       timingFunction: 'ease'
     })
-    that.animationRun = animationRun
+    _This.animationRun = animationRun
     animationRun.rotate(app.runDegs).step()
-    that.setData({
+    _This.setData({
       animationData: animationRun.export(),
       btnDisabled: 'disabled'
     })
 
-     // 记录奖品
-    var winAwards = wx.getStorageSync('winAwards') || {data:[]}
-    winAwards.data.push(awardsConfig.awards[awardIndex].name + '1个')
-    wx.setStorageSync('winAwards', winAwards)
+
 
     // 中奖提示
     setTimeout(function() {
@@ -50,7 +49,7 @@ Page({
         showCancel: false
       })
       if (awardsConfig.chance) {
-        that.setData({
+        _This.setData({
           btnDisabled: ''
         })  
       }
@@ -59,34 +58,34 @@ Page({
   },
   onReady: function (e) {
 
-    var that = this;
+    let _This = this;
 
     // getAwardsConfig
-    app.awardsConfig = {
+    let oAwardsConfig = {
       chance: true,
       awards:[
-        {'index': 0, 'name': '1元红包'},
-        {'index': 1, 'name': '5元话费'},
-        {'index': 2, 'name': '6元红包'},
-        {'index': 3, 'name': '8元红包'},
-        {'index': 4, 'name': '10元话费'},
-        {'index': 5, 'name': '10元红包'}
+        { 'index': 0, 'name': '1元红包', 'icon':"https://mk-node-wxa.nihaomc.com/feimg/ind-cus-manage.png"},
+        { 'index': 1, 'name': '5元话费', 'icon': "https://mk-node-wxa.nihaomc.com/feimg/ind-search.png"},
+        { 'index': 2, 'name': '6元红包', 'icon': "https://mk-node-wxa.nihaomc.com/feimg/ind-case.png"},
+        { 'index': 3, 'name': '8元红包', 'icon': "https://mk-node-wxa.nihaomc.com/feimg/ind-dest.png"},
+        { 'index': 4, 'name': '10元话费', 'icon': "https://mk-node-wxa.nihaomc.com/feimg/ind-collect.png"},
+        { 'index': 5, 'name': '10元红包', 'icon': "https://mk-node-wxa.nihaomc.com/feimg/ind-share.png"}
       ]
     }
     
 
   
     // 绘制转盘
-    var awardsConfig = app.awardsConfig.awards,
-        len = awardsConfig.length,
+    let awardsConfig = oAwardsConfig.awards,
+        len = awardsConfig.length||1,
         rotateDeg = 360 / len / 2 + 90,
         html = [],
         turnNum = 1 / len  // 文字旋转 turn 值
-    that.setData({
-      btnDisabled: app.awardsConfig.chance ? '' : 'disabled'  
+    _This.setData({
+      btnDisabled: oAwardsConfig.chance ? '' : 'disabled'  
     })
-    var ctx = wx.createContext()
-    for (var i = 0; i < len; i++) {
+    let ctx = wx.createContext()
+    for (let i = 0; i < len; i++) {
       // 保存当前状态
       ctx.save();
       // 开始一条新路径
@@ -114,10 +113,11 @@ Page({
       // 恢复前一个状态
       ctx.restore();
       // 奖项列表
-      html.push({turn: i * turnNum + 'turn', lineTurn: i * turnNum + turnNum / 2 + 'turn', award: awardsConfig[i].name});    
+      html.push({ turn: i * turnNum + 'turn', lineTurn: i * turnNum + turnNum / 2 + 'turn', award: awardsConfig[i].name, icon: awardsConfig[i].icon});    
     }
-    that.setData({
-        awardsList: html
+    _This.setData({
+        awardsList: html,
+      oAwardsConfig: oAwardsConfig
       });
 
   }
