@@ -1,42 +1,37 @@
-var app = getApp()
 Page({
   data: {
     oAwardsConfig:{},//奖品配置
+    runDegs:0,//旋转角度
     awardsList: {},
     animationData: {},
     btnDisabled: ''
   },
-  gotoList: function() {
-    wx.redirectTo({
-      url: '../list/list'
-    })
-  },
   getLottery: function () {
     let _This = this
     let awardIndex = Math.random() * 6 >>> 0;
-    let oAwardsConfig = _This.data.oAwardsConfig;
+    console.log("awardIndex----------------", Math.random()*6);
+    let { oAwardsConfig, runDegs} = _This.data;
     console.log("oAwardsConfig----------------", oAwardsConfig);
     // 获取奖品配置
     let awardsConfig = oAwardsConfig,
         runNum = 8
-    if (awardIndex < 2) awardsConfig.chance = false
-      console.log("awardsConfig----------------", awardsConfig);
+    console.log("awardIndex----------------", awardIndex,runDegs);
 
     // 旋转抽奖
-    app.runDegs = app.runDegs || 0
-    console.log('deg----11111------', app.runDegs)
-    app.runDegs = app.runDegs + (360 - app.runDegs % 360) + (360 * runNum - awardIndex * (360 / 6))
-    console.log('deg----2222222-------', app.runDegs)
+    console.log('deg----11111------',runDegs)
+    runDegs =runDegs + (360 - runDegs % 360) + (360 * runNum - awardIndex * (360 / 6))
+    console.log('deg----2222222-------',runDegs)
 
     let animationRun = wx.createAnimation({
       duration: 4000,
       timingFunction: 'ease'
     })
     _This.animationRun = animationRun
-    animationRun.rotate(app.runDegs).step()
+    animationRun.rotate(runDegs).step();
     _This.setData({
       animationData: animationRun.export(),
-      btnDisabled: 'disabled'
+      btnDisabled: 'disabled',
+      runDegs: runDegs
     })
 
 
@@ -69,7 +64,7 @@ Page({
         { 'index': 2, 'name': '6元红包', 'icon': "https://mk-node-wxa.nihaomc.com/feimg/ind-case.png"},
         { 'index': 3, 'name': '8元红包', 'icon': "https://mk-node-wxa.nihaomc.com/feimg/ind-dest.png"},
         { 'index': 4, 'name': '10元话费', 'icon': "https://mk-node-wxa.nihaomc.com/feimg/ind-collect.png"},
-        { 'index': 5, 'name': '10元红包', 'icon': "https://mk-node-wxa.nihaomc.com/feimg/ind-share.png"}
+        { 'index': 5, 'name': '20元红包', 'icon': "https://mk-node-wxa.nihaomc.com/feimg/ind-share.png"}
       ]
     }
     

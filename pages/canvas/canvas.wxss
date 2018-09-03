@@ -144,7 +144,7 @@ page {
   border-bottom-color: #E44025; 
 }
 .canvas-btn.disabled{
-    /* pointer-events: none; */
+   pointer-events: none;
     background: #B07A7B;
     color: #ccc;
 }
@@ -156,24 +156,4 @@ page {
 .gb-run{ 
     -webkit-transition: all 6s ease;
     transition: all 6s ease;
-}
-
-
-/* 查看中奖 */
-.main-container{
-	margin: 1rem 2rem;
-}
-
-.main-container-rule{
-	padding: 1rem 0;
-}
-.main-rule-title{
-	display: block;
-	padding: 4px 0;
-	font-size: 16px;
-	font-weight: bold;
-}
-.main-rule-item{
-	display: block;
-	padding: 2px 0;
 }
