@@ -49,9 +49,9 @@ page {
 }
 .canvas-element{
   position: relative;
+  width: 350rpx; 
+  height: 350rpx;
   z-index: 1;
-  width: inherit;
-  height: inherit;
   border-radius: 50%;
 }
 .canvas-list{

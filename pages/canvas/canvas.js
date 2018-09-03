@@ -1,6 +1,7 @@
 Page({
   data: {
     oAwardsConfig:{},//奖品配置
+    isChance:false,//
     runDegs:0,//旋转角度
     awardsList: {},
     animationData: {},
@@ -16,7 +17,6 @@ Page({
     let awardsConfig = oAwardsConfig,
         runNum = 8
     console.log("awardIndex----------------", awardIndex,runDegs);
-
     // 旋转抽奖
     console.log('deg----11111------',runDegs)
     runDegs =runDegs + (360 - runDegs % 360) + (360 * runNum - awardIndex * (360 / 6))
@@ -33,8 +33,6 @@ Page({
       btnDisabled: 'disabled',
       runDegs: runDegs
     })
-
-
 
     // 中奖提示
     setTimeout(function() {
@@ -67,9 +65,6 @@ Page({
         { 'index': 5, 'name': '20元红包', 'icon': "https://mk-node-wxa.nihaomc.com/feimg/ind-share.png"}
       ]
     }
-    
-
-  
     // 绘制转盘
     let awardsConfig = oAwardsConfig.awards,
         len = awardsConfig.length||1,
@@ -81,32 +76,6 @@ Page({
     })
     let ctx = wx.createContext()
     for (let i = 0; i < len; i++) {
-      // 保存当前状态
-      ctx.save();
-      // 开始一条新路径
-      ctx.beginPath();
-      // 位移到圆心，下面需要围绕圆心旋转
-      ctx.translate(150, 150);
-      // 从(0, 0)坐标开始定义一条新的子路径
-      ctx.moveTo(0, 0);
-      // 旋转弧度,需将角度转换为弧度,使用 degrees * Math.PI/180 公式进行计算。
-      ctx.rotate((360 / len * i - rotateDeg) * Math.PI/180);
-      // 绘制圆弧
-      ctx.arc(0, 0, 150, 0,  2 * Math.PI / len, false);
-      // 颜色间隔
-      if (i % 2 == 0) {
-          ctx.setFillStyle('rgba(255,184,32,.1)');
-      }else{
-          ctx.setFillStyle('rgba(255,203,63,.1)');
-      }
-      // 填充扇形
-      ctx.fill();
-      // 绘制边框
-      ctx.setLineWidth(0.5);
-      ctx.setStrokeStyle('rgba(228,55,14,.1)');
-      ctx.stroke();
-      // 恢复前一个状态
-      ctx.restore();
       // 奖项列表
       html.push({ turn: i * turnNum + 'turn', lineTurn: i * turnNum + turnNum / 2 + 'turn', award: awardsConfig[i].name, icon: awardsConfig[i].icon});    
     }
