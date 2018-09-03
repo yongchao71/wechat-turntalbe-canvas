@@ -1,21 +1,23 @@
 Page({
   data: {
-    oAwardsConfig:{},//奖品配置
+    aAwardsList: [{'index': 0, 'name': '1元红包', 'icon': "https://mk-node-wxa.nihaomc.com/feimg/ind-cus-manage.png" },
+      { 'index': 1, 'name': '5元话费', 'icon': "https://mk-node-wxa.nihaomc.com/feimg/ind-search.png" },
+      { 'index': 2, 'name': '6元红包', 'icon': "https://mk-node-wxa.nihaomc.com/feimg/ind-case.png" },
+      { 'index': 3, 'name': '8元红包', 'icon': "https://mk-node-wxa.nihaomc.com/feimg/ind-dest.png" },
+      { 'index': 4, 'name': '10元话费', 'icon': "https://mk-node-wxa.nihaomc.com/feimg/ind-collect.png" },
+      { 'index': 5, 'name': '20元红包', 'icon': "https://mk-node-wxa.nihaomc.com/feimg/ind-share.png" }],//奖品列表
     isChance:false,//
     runDegs:0,//旋转角度
     awardsList: {},
     animationData: {},
-    btnDisabled: ''
+    btnDisabled: '',//按钮是否可用
   },
   getLottery: function () {
     let _This = this
     let awardIndex = Math.random() * 6 >>> 0;
-    console.log("awardIndex----------------", Math.random()*6);
-    let { oAwardsConfig, runDegs} = _This.data;
-    console.log("oAwardsConfig----------------", oAwardsConfig);
+    let { runDegs, aAwardsList, isChance} = _This.data;
     // 获取奖品配置
-    let awardsConfig = oAwardsConfig,
-        runNum = 8
+      let  runNum = 8
     console.log("awardIndex----------------", awardIndex,runDegs);
     // 旋转抽奖
     console.log('deg----11111------',runDegs)
@@ -38,14 +40,12 @@ Page({
     setTimeout(function() {
       wx.showModal({
         title: '恭喜',
-        content: '获得' + (awardsConfig.awards[awardIndex].name),
+        content: '获得' + (aAwardsList[awardIndex].name),
         showCancel: false
       })
-      if (awardsConfig.chance) {
         _This.setData({
           btnDisabled: ''
-        })  
-      }
+        }) 
     }, 4000);
     
   },
@@ -53,35 +53,18 @@ Page({
 
     let _This = this;
 
-    // getAwardsConfig
-    let oAwardsConfig = {
-      chance: true,
-      awards:[
-        { 'index': 0, 'name': '1元红包', 'icon':"https://mk-node-wxa.nihaomc.com/feimg/ind-cus-manage.png"},
-        { 'index': 1, 'name': '5元话费', 'icon': "https://mk-node-wxa.nihaomc.com/feimg/ind-search.png"},
-        { 'index': 2, 'name': '6元红包', 'icon': "https://mk-node-wxa.nihaomc.com/feimg/ind-case.png"},
-        { 'index': 3, 'name': '8元红包', 'icon': "https://mk-node-wxa.nihaomc.com/feimg/ind-dest.png"},
-        { 'index': 4, 'name': '10元话费', 'icon': "https://mk-node-wxa.nihaomc.com/feimg/ind-collect.png"},
-        { 'index': 5, 'name': '20元红包', 'icon': "https://mk-node-wxa.nihaomc.com/feimg/ind-share.png"}
-      ]
-    }
+    let aAwardsList = _This.data.aAwardsList;
     // 绘制转盘
-    let awardsConfig = oAwardsConfig.awards,
-        len = awardsConfig.length||1,
-        rotateDeg = 360 / len / 2 + 90,
-        html = [],
+     let len = aAwardsList.length||1,
+       awardsList = [],
         turnNum = 1 / len  // 文字旋转 turn 值
-    _This.setData({
-      btnDisabled: oAwardsConfig.chance ? '' : 'disabled'  
-    })
-    let ctx = wx.createContext()
     for (let i = 0; i < len; i++) {
       // 奖项列表
-      html.push({ turn: i * turnNum + 'turn', lineTurn: i * turnNum + turnNum / 2 + 'turn', award: awardsConfig[i].name, icon: awardsConfig[i].icon});    
+      awardsList.push({ turn: i * turnNum + 'turn', lineTurn: i * turnNum + turnNum / 2 + 'turn', award: aAwardsList[i].name, icon: aAwardsList[i].icon});    
     }
+    console.log("awardsList-------------------", awardsList);
     _This.setData({
-        awardsList: html,
-      oAwardsConfig: oAwardsConfig
+      awardsList: awardsList
       });
 
   }
