@@ -137,7 +137,7 @@ page {
   border-bottom-color: #E44025; 
 }
 .canvas-btn.disabled{
-    pointer-events: none;
+    /* pointer-events: none; */
     background: #B07A7B;
     color: #ccc;
 }

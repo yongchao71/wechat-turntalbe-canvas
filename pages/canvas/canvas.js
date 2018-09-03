@@ -11,6 +11,7 @@ Page({
     })
   },
   getLottery: function () {
+    console.log("a----------------");
     var that = this
     var awardIndex = Math.random() * 6 >>> 0;
 
@@ -18,24 +19,12 @@ Page({
     var awardsConfig = app.awardsConfig,
         runNum = 8
     if (awardIndex < 2) awardsConfig.chance = false
-    console.log(awardIndex)
-
-    // 初始化 rotate
-  /*  var animationInit = wx.createAnimation({
-      duration: 10
-    })
-    this.animationInit = animationInit;
-    animationInit.rotate(0).step()
-    this.setData({
-      animationData: animationInit.export(),
-      btnDisabled: 'disabled'
-    })*/
 
     // 旋转抽奖
     app.runDegs = app.runDegs || 0
-    console.log('deg', app.runDegs)
+    console.log('deg----11111------', app.runDegs)
     app.runDegs = app.runDegs + (360 - app.runDegs % 360) + (360 * runNum - awardIndex * (360 / 6))
-    console.log('deg', app.runDegs)
+    console.log('deg----2222222-------', app.runDegs)
 
     var animationRun = wx.createAnimation({
       duration: 4000,
@@ -67,25 +56,6 @@ Page({
       }
     }, 4000);
     
-
-    /*wx.request({
-      url: '../../data/getLottery.json',
-      data: {},
-      header: {
-          'Content-Type': 'application/json'
-      },
-      success: function(data) {
-        console.log(data)
-      },
-      fail: function(error) {
-        console.log(error)
-        wx.showModal({
-          title: '抱歉',
-          content: '网络异常，请重试',
-          showCancel: false
-        })
-      }
-    })*/
   },
   onReady: function (e) {
 
@@ -104,9 +74,8 @@ Page({
       ]
     }
     
-    // wx.setStorageSync('awardsConfig', JSON.stringify(awardsConfig))
-    
 
+  
     // 绘制转盘
     var awardsConfig = app.awardsConfig.awards,
         len = awardsConfig.length,
@@ -130,36 +99,26 @@ Page({
       ctx.rotate((360 / len * i - rotateDeg) * Math.PI/180);
       // 绘制圆弧
       ctx.arc(0, 0, 150, 0,  2 * Math.PI / len, false);
-
       // 颜色间隔
       if (i % 2 == 0) {
           ctx.setFillStyle('rgba(255,184,32,.1)');
       }else{
           ctx.setFillStyle('rgba(255,203,63,.1)');
       }
-
       // 填充扇形
       ctx.fill();
       // 绘制边框
       ctx.setLineWidth(0.5);
       ctx.setStrokeStyle('rgba(228,55,14,.1)');
       ctx.stroke();
-
       // 恢复前一个状态
       ctx.restore();
-
       // 奖项列表
       html.push({turn: i * turnNum + 'turn', lineTurn: i * turnNum + turnNum / 2 + 'turn', award: awardsConfig[i].name});    
     }
     that.setData({
         awardsList: html
       });
-
-    // 对 canvas 支持度太差，换种方式实现
-    /*wx.drawCanvas({
-      canvasId: 'lotteryCanvas',
-      actions: ctx.getActions()
-    })*/
 
   }
 
