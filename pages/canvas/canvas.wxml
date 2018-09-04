@@ -20,16 +20,10 @@
                <image src='{{oItem.icon}}' class='award-img' mode='aspectFit'></image>
                </view> 
 					</view>
-				</view>
-
-				
+				</view>			
 			</view>
-
 			<view bindtap="fLuckdraw" class="draw-btn {{isDisabled}}">抽奖</view>		
 		</view>
-
-
-
 	</view>
  
 </view>

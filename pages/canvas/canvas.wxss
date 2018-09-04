@@ -81,18 +81,18 @@
 }
 .draw-btn{
   position: absolute;
-  left: 220rpx;
-  top: 220rpx;
-  z-index: 4;
   width: 160rpx;
   height: 160rpx;
+  left:50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 4;
   border-radius: 50%;
   color: #ffffff;
   background-color: #E44025;
   line-height:160rpx;
   text-align: center;
   font-size: 40rpx;
-  text-decoration: none;
 }
 .draw-btn::after{
   position: absolute;
