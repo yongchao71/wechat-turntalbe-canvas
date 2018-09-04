@@ -32,8 +32,8 @@ page {
   height: 300px;  
   border-radius: 50%;
   /*border: 2px solid #E44025;*/
-  box-shadow: 0 2px 3px #333,
-              0 0 2px #000;
+  box-shadow: 0 4rpx 6rpx #333,
+              0 0 4rpx #000;
 }
 .canvas-content{
   position: absolute;
@@ -47,13 +47,7 @@ page {
   background-clip: padding-box;
   background-color: #ffcb3f;
 }
-.canvas-element{
-  position: relative;
-  width: 350rpx; 
-  height: 350rpx;
-  z-index: 1;
-  border-radius: 50%;
-}
+
 .canvas-list{
   position: absolute;
   left: 0;
@@ -153,7 +147,4 @@ page {
 }
 
 
-.gb-run{ 
-    -webkit-transition: all 6s ease;
-    transition: all 6s ease;
-}
+
