@@ -8,10 +8,8 @@
 	<view class="main">
 		<view class="wheel-container">
 			<view  animation="{{animationData}}" class="po-ab-0 wheel-ct" >
-				<view class=" wheel-line">
-					<view class="wheel-line-item" wx:for="{{aAwardsItems}}" wx:key="unique" style="-webkit-transform: rotate({{item.lineTurn}});transform: rotate({{item.lineTurn}})"></view>
-				</view>
-				<view class="wheel-items-ct i-background" style=''>
+      <canvas style="width:300px;height:300px;" class="canvas-element" canvas-id="lotteryCanvas"></canvas>
+				<view class="po-ab-0 wheel-items-ct" style=''>
 					<view class="po-ab-0 wheel-item" wx:for="{{aAwardsItems}}" wx:key="unique"  wx:for-item='oItem'>
 				  		 <view class="wheel-item-text" style="-webkit-transform: rotate({{oItem.turn}});transform: rotate({{oItem.turn}})"> 
                <view>
@@ -25,5 +23,20 @@
 			<view bindtap="fLuckdraw" class="draw-btn {{isDisabled}}">抽奖</view>		
 		</view>
 	</view>
+
+
+
+<!-- <view>
+ <canvas style="width:300px;height:300px;" class="canvas-element" canvas-id="lotteryCanvas"></canvas>
+</view> -->
+
+
+
  
+
+
+
+
+
+
 </view>

@@ -43,7 +43,7 @@
 .wheel-items-ct{
   width: inherit;
   height: inherit;
-  z-index: 1;
+   z-index: 2;
 }
 .wheel-item{
   width: 100%;
@@ -67,22 +67,13 @@
 }
 
 
-.wheel-line{
+.canvas-element{
   width: inherit;
   height: inherit;
-  z-index: 99;
+  border-radius: 50%;
 }
-.wheel-line-item{
-   position: absolute;
-   left:300rpx;
-   top: 0;
-   width: 1rpx;
-   height: 300rpx;
-   background-color: rgba(228,55,14,.4);
-   overflow: hidden; 
-   -webkit-transform-origin: 50% 300rpx; 
-   transform-origin: 50% 300rpx;
-}
+
+
 .draw-btn{
   position: absolute;
   width: 160rpx;
@@ -90,7 +81,7 @@
   left:50%;
   top: 50%;
   transform: translate(-50%,-50%);
-  z-index: 4;
+  z-index: 3;
   border-radius: 50%;
   color: #ffffff;
   background-color: #E44025;
