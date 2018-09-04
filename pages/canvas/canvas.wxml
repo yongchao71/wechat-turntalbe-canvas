@@ -11,7 +11,7 @@
 				<view class=" wheel-line">
 					<view class="wheel-line-item" wx:for="{{aAwardsItems}}" wx:key="unique" style="-webkit-transform: rotate({{item.lineTurn}});transform: rotate({{item.lineTurn}})"></view>
 				</view>
-				<view class="wheel-items-ct">
+				<view class="wheel-items-ct i-background" style=''>
 					<view class="po-ab-0 wheel-item" wx:for="{{aAwardsItems}}" wx:key="unique"  wx:for-item='oItem'>
 				  		 <view class="wheel-item-text" style="-webkit-transform: rotate({{oItem.turn}});transform: rotate({{oItem.turn}})"> 
                <view>
