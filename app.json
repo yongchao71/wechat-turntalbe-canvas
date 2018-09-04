@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/wheelprize/wheelprize",
     "pages/canvas/canvas"
   ],
   "window":{

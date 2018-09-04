@@ -1,0 +1,29 @@
+<view class="wrapper">
+
+	<view class="header">
+		<text class="header-title"> 大转盘抽奖 </text>
+		<text class="header-subtitle">  感恩节活动大抽奖，反馈广大客户 </text> 
+	</view>
+
+	<view class="main">
+		<view class="wheel-container">
+			<view  animation="{{animationData}}" class="po-ab-0 wheel-ct" >
+				<view class=" wheel-line">
+					<view class="wheel-line-item" wx:for="{{aAwardsItems}}" wx:key="unique" style="-webkit-transform: rotate({{item.lineTurn}});transform: rotate({{item.lineTurn}})"></view>
+				</view>
+				<view class="wheel-items-ct i-background" style=''>
+					<view class="po-ab-0 wheel-item" wx:for="{{aAwardsItems}}" wx:key="unique"  wx:for-item='oItem'>
+				  		 <view class="wheel-item-text" style="-webkit-transform: rotate({{oItem.turn}});transform: rotate({{oItem.turn}})"> 
+               <view>
+                {{oItem.award}}
+                </view>
+               <image src='{{oItem.icon}}' class='award-img' mode='aspectFit'></image>
+               </view> 
+					</view>
+				</view>			
+			</view>
+			<view bindtap="fLuckdraw" class="draw-btn {{isDisabled}}">抽奖</view>		
+		</view>
+	</view>
+ 
+</view>
