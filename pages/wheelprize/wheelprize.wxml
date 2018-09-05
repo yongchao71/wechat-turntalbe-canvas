@@ -1,3 +1,4 @@
+<wxs src="./wheelprize.wxs" module="wheelprize" />
 <view class="wrapper">
 
   <view class="header">
@@ -8,11 +9,11 @@
   <view class="main">
     <view class="wheel-container">
       <view animation="{{animationData}}" class="po-ab-0 wheel-ct">
-        <!-- <view class=" wheel-line">
+      		<!-- <view class=" wheel-line">
 					<view class="wheel-line-item" wx:for="{{aAwardsItems}}" wx:key="unique" style="-webkit-transform: rotate({{item.lineTurn}});transform: rotate({{item.lineTurn}})"></view>
 				</view> -->
         <view class=" wheel-line">
-          <view  wx:for="{{aAwardsItems}}" wx:for-index="iindex" wx:key="unique" class="com-wheel  {{iindex%2==0?'ired':'iwhite'}}" style="-webkit-transform: rotate({{item.lineTurn}});transform: rotate({{item.lineTurn}})"></view>
+          <view  wx:for="{{aAwardsItems}}" wx:for-index="iindex" wx:key="unique" class="com-wheel  {{iindex%2==0?'ired':'iwhite'}} {{wheelprize.drawItem(aAwardsItems.length)}}" style="-webkit-transform: rotate({{item.lineTurn}});transform: rotate({{item.lineTurn}})"></view>
 				</view>
           <view class="po-ab-0 wheel-items-ct" style='z-index:10000;'>
             <view class="po-ab-0 wheel-item" wx:for="{{aAwardsItems}}" wx:key="unique" wx:for-item='oItem'>
@@ -28,45 +29,6 @@
       <view bindtap="fLuckdraw" class="draw-btn {{isDisabled}}">抽奖</view>
     </view>
   </view>
-
-
-
-  <!-- <view animation="{{animationData}}" class="po-ab-0 wheel-ct">
-    <canvas style="width:300px;height:300px;" class="canvas-element" canvas-id="lotteryCanvas">
-<cover-view>fffffffffffffff</cover-view>
-<cover-view>fffffffffffffff</cover-view>
-<cover-view>fffffffffffffff</cover-view>
-<cover-view>fffffffffffffff</cover-view>
-    </canvas>
-  </view> -->
-
-
-
-
-
-
-
-<!-- <view class="com-ran sector">
-
-</view>
-<view class="com-ran sector2">
-
-</view>
-<view class="com-ran sector3">
-
-</view>
-<view class="com-ran sector4">
-
-</view>
-<view class="com-ran sector5">
-
-</view>
-<view class="com-ran sector6">
-
-</view> -->
-
-
-
 
 
 </view>

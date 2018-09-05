@@ -1,0 +1,8 @@
+var drawItem = function (ilength) {
+  ilength = ilength || 6;
+  return "transform-" + ilength;
+}
+
+module.exports = {
+  drawItem: drawItem
+}
