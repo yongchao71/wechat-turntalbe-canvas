@@ -36,7 +36,8 @@
   z-index: 1;
   width: 600rpx;
   height: 600rpx;
-  border-radius: inherit;
+  border-radius: 50%;
+
   background-color: #ffcb3f;
 }
 
@@ -67,10 +68,21 @@
 }
 
 
-.canvas-element{
+.wheel-line{
   width: inherit;
   height: inherit;
-  border-radius: 50%;
+  z-index: 99;
+}
+.wheel-line-item{
+   position: absolute;
+   left:300rpx;
+   top: 0;
+   width: 1rpx;
+   height: 300rpx;
+   background-color: rgba(228,55,14,.4);
+   overflow: hidden; 
+   -webkit-transform-origin: 50% 300rpx; 
+   transform-origin: 50% 300rpx;
 }
 
 
@@ -94,7 +106,7 @@
   display: block;
   content: ' ';
   left: 20rpx;
-  top: -92rpx;
+  top: -85rpx;
   width: 0;
   height: 0;
   overflow: hidden;
@@ -113,4 +125,89 @@
 }
 
 
+/****************************************/
+.com-wheel{
+    width: 600rpx; height: 600rpx;
+      clip: rect(0 600rpx 600rpx 300rpx); 
+    position: absolute;
+}
+.com-wheel::after{
+        content: '';
+    width: 100%; height: 100%;
+    position: absolute;
+     clip: rect(0 300rpx 600rpx 0);
+      border-radius: 50%;
+      transform: rotate(60deg);
+}
+.ired::after {
+       background: #990077;
+} 
+.iwhite::after {
+       background: #EFEFEF;
+} 
+
+
+
+/****************************************/
+
+
+.com-ran{
+    width: 300px; height: 300px;
+      clip: rect(0 300px 300px 150px); 
+    position: absolute;
+}
+.com-ran::after{
+        content: '';
+    width: 100%; height: 100%;
+    position: absolute;
+     clip: rect(0 150px 300px 0);
+      border-radius: 50%;
+      transform: rotate(60deg);
+}
+
+
+
+
+
+
+
+
+.sector {
+    /* overflow: hidden; */
+     transform: rotate(-30deg);
+}
+ .sector::after {
+    background:#EFEFEF; 
+} 
+.sector2 {
+     transform: rotate(30deg);
+}
+ .sector2::after {
+       background: #990077;
+} 
+.sector3 {
+     transform: rotate(90deg);
+}
+ .sector3::after {
+       background:#EFEFEF;
+
+} 
+.sector4 {
+     transform: rotate(150deg);
+}
+ .sector4::after {
+       background: #990077;
+} 
+.sector5 {
+     transform: rotate(210deg);
+}
+ .sector5::after {
+       background:#EFEFEF;
+} 
+.sector6 {
+     transform: rotate(270deg);
+}
+ .sector6::after {
+       background: #990077;
+} 
 
